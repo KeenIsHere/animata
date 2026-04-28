@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export interface PricingPlan {
@@ -61,6 +61,7 @@ const defaultPlans: PricingPlan[] = [
 
 export default function AnimatedPricingCards({ plans = defaultPlans }: AnimatedPricingCardsProps) {
   const safePlans = Array.isArray(plans) ? plans : defaultPlans;
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section className="w-full px-4 py-16 sm:py-20 lg:py-24">
@@ -79,15 +80,15 @@ export default function AnimatedPricingCards({ plans = defaultPlans }: AnimatedP
             <motion.article
               key={plan.name}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0, scale: plan.highlighted ? 1.05 : 1 }}
+              whileHover={prefersReducedMotion ? undefined : { y: -8 }}
               transition={{ delay: index * 0.1, duration: 0.4 }}
               viewport={{ once: true, margin: "-100px" }}
               className={cn(
                 "group relative flex flex-col rounded-2xl border transition-all duration-300",
-                "motion-safe:hover:-translate-y-2",
                 "bg-background p-6 sm:p-8 lg:p-10",
                 plan.highlighted
-                  ? "border-primary shadow-lg lg:scale-105"
+                  ? "border-primary shadow-lg"
                   : "border-border shadow-sm motion-safe:hover:shadow-md",
               )}
             >
@@ -134,12 +135,11 @@ export default function AnimatedPricingCards({ plans = defaultPlans }: AnimatedP
               </ul>
 
               <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
+                whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
                 className={cn(
                   "h-11 w-full rounded-lg font-semibold transition-colors duration-200",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                  "motion-reduce:hover:scale-100",
                   plan.highlighted
                     ? "bg-primary text-primary-foreground hover:bg-primary/90"
                     : "border border-border text-foreground hover:bg-muted",
