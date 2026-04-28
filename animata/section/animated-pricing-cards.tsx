@@ -122,6 +122,8 @@ export default function AnimatedPricingCards({ plans = defaultPlans }: AnimatedP
                       className="h-5 w-5 shrink-0 text-primary"
                       fill="currentColor"
                       viewBox="0 0 20 20"
+                      aria-hidden="true"
+                      focusable="false"
                     >
                       <path
                         fillRule="evenodd"
