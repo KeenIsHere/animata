@@ -1,59 +1,51 @@
 ---
 title: Feature Grid Hover Reveal
-description: A responsive SaaS feature grid with hover lift, gradient border highlight, and icon micro-interactions
-author: YourTwitterUsername
+description: A responsive SaaS feature section with icon cards, hover lift, border highlight, and icon scale micro-interactions.
+author: AnimataContributor
+published: true
 ---
 
-<ComponentPreview name="section-feature-grid-hover-reveal--docs" />
+<ComponentPreview name="section-feature-grid-hover-reveal--primary" />
 
-## Installation
+## Overview
 
-### CLI
+Feature Grid Hover Reveal is a polished section component for SaaS landing pages. It displays a grid of feature cards with icon, title, and description. On hover, cards lift, border highlights, and the icon scales — all using only `transform` and `opacity`. Animations are disabled when `prefers-reduced-motion` is enabled.
 
-<RegistryInstall category="section" name="feature-grid-hover-reveal" />
+## Features
 
-### Manual
+- **Responsive grid** — 1 column mobile, 2 tablet, 3 desktop
+- **Hover lift** — `-translate-y-1.5` with 300ms transition
+- **Icon scale** — `scale-115` with 200ms transition
+- **Border highlight** — `border-primary/40` on hover
+- **Ring overlay** — inset ring fades in via opacity
+- **prefers-reduced-motion** — all animations off when set
+- **Dark mode** — full Tailwind token support
+- **Configurable** — 2 or 3 column layout, custom title/subtitle/features
+- **Zero-props render** — 6 default SaaS feature items built in
 
-<Steps>
-<Step>Install dependencies</Step>
+## Usage
 
-```bash
-npm install framer-motion lucide-react
-```
+\`\`\`tsx
+import FeatureGridHoverReveal from "@/animata/section/feature-grid-hover-reveal";
 
-<Step>Update `tailwind.config.js`</Step>
-
-Add the following to your tailwind.config.js file.
-
-```json
-module.exports = {
-  theme: {
-    extend: {
-    }
-  }
+export default function Page() {
+  return <FeatureGridHoverReveal />;
 }
-```
+\`\`\`
 
-<Step>Run the following command</Step>
+## Props
 
-It will create a new file `feature-grid-hover-reveal.tsx` inside the `components/animata/section` directory.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| features | FeatureItem[] | 6 built-in items | Array of feature cards |
+| columns | 2 or 3 | 3 | Grid column count |
+| title | string | Built-in heading | Section title |
+| subtitle | string | Built-in subtitle | Section subtitle |
 
-```bash 
-mkdir -p components/animata/section && touch components/animata/section/feature-grid-hover-reveal.tsx
-```
+## Accessibility
 
-<Step>Paste the code</Step> 
-
-Open the newly created file and paste the following code:
-
-```jsx file=<rootDir>/animata/section/feature-grid-hover-reveal.tsx
-
-```
-</Steps>
-
-
-## Credits
-
-   Built by [Your name](https://github.com/YourGithubUsername)
-
-   ...Add appropriate credits here.
+- Semantic section and article elements
+- Hover state triggered on focus/blur — keyboard accessible
+- Decorative ring has aria-hidden="true"
+- Icon container is 44x44px minimum touch target
+- All motion respects prefers-reduced-motion
