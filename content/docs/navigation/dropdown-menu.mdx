@@ -35,7 +35,6 @@ export default function Page() {
 ## Custom Items
 
 ```tsx
-import { User, Settings, LogOut } from "lucide-react";
 import DropdownMenu from "@/animata/navigation/dropdown-menu";
 
 export default function Page() {
@@ -44,9 +43,9 @@ export default function Page() {
       triggerLabel="Account"
       align="right"
       items={[
-        { label: "Profile", icon: <User className="h-4 w-4" />, onClick: () => {} },
-        { label: "Settings", icon: <Settings className="h-4 w-4" />, onClick: () => {} },
-        { label: "Sign Out", icon: <LogOut className="h-4 w-4" />, onClick: () => {} },
+        { label: "Profile", onClick: () => console.log("profile") },
+        { label: "Settings", onClick: () => console.log("settings") },
+        { label: "Sign Out", onClick: () => console.log("signout") },
       ]}
     />
   );
@@ -59,7 +58,7 @@ export default function Page() {
 |------|------|---------|-------------|
 | `items` | `MenuItem[]` | 4 default items | Array of menu items |
 | `triggerLabel` | `string` | `"Options"` | Trigger button label |
-| `align` | `"left" \| "right"` | `"left"` | Dropdown panel alignment |
+| `align` | `"left" or "right"` | `"left"` | Dropdown panel alignment |
 
 ## Types
 
