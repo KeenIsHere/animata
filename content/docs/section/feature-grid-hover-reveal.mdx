@@ -9,29 +9,29 @@ published: true
 
 ## Overview
 
-Feature Grid Hover Reveal is a polished section component for SaaS landing pages. It displays a grid of feature cards with icon, title, and description. On hover, cards lift, border highlights, and the icon scales — all using only `transform` and `opacity`. Animations are disabled when `prefers-reduced-motion` is enabled.
+Feature Grid Hover Reveal is a polished section component for SaaS landing pages. It displays a grid of feature cards with icon, title, and description. On hover, cards lift, the border highlights, and the icon scales up using only transform and opacity. Animations are skipped when prefers-reduced-motion is enabled.
 
 ## Features
 
-- **Responsive grid** — 1 column mobile, 2 tablet, 3 desktop
-- **Hover lift** — `-translate-y-1.5` with 300ms transition
-- **Icon scale** — `scale-115` with 200ms transition
-- **Border highlight** — `border-primary/40` on hover
-- **Ring overlay** — inset ring fades in via opacity
-- **prefers-reduced-motion** — all animations off when set
-- **Dark mode** — full Tailwind token support
-- **Configurable** — 2 or 3 column layout, custom title/subtitle/features
-- **Zero-props render** — 6 default SaaS feature items built in
+- Responsive grid: 1 column mobile, 2 tablet, 3 desktop
+- Hover lift: -translate-y-1.5 with 300ms transition
+- Icon scale: scale-115 with 200ms transition  
+- Border highlight: border-primary/40 on hover
+- Ring overlay: inset ring fades in via opacity
+- prefers-reduced-motion: all animations off when set
+- Dark mode: full Tailwind token support
+- Configurable: 2 or 3 column layout via prop
+- Zero-props render: 6 default SaaS feature items built in
 
 ## Usage
 
-\`\`\`tsx
+```tsx
 import FeatureGridHoverReveal from "@/animata/section/feature-grid-hover-reveal";
 
 export default function Page() {
   return <FeatureGridHoverReveal />;
 }
-\`\`\`
+```
 
 ## Props
 
@@ -42,10 +42,27 @@ export default function Page() {
 | title | string | Built-in heading | Section title |
 | subtitle | string | Built-in subtitle | Section subtitle |
 
+## Types
+
+```typescript
+interface FeatureItem {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+interface FeatureGridProps {
+  features?: FeatureItem[];
+  columns?: 2 | 3;
+  title?: string;
+  subtitle?: string;
+}
+```
+
 ## Accessibility
 
 - Semantic section and article elements
-- Hover state triggered on focus/blur — keyboard accessible
-- Decorative ring has aria-hidden="true"
-- Icon container is 44x44px minimum touch target
+- Hover state triggered on focus and blur for keyboard access
+- Decorative ring span has aria-hidden set to true
+- Icon container meets 44x44px minimum touch target
 - All motion respects prefers-reduced-motion
